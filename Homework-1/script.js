@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import gsap from 'gsap';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -8,17 +7,15 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("scene").appendChild(renderer.domElement);
 
-
-const geometry = new THREE.SphereGeometry(1, 32, 32); 
+const geometry = new THREE.SphereGeometry(1, 32, 32);
 const material = new THREE.MeshBasicMaterial({ 
     color: 0xffffff, 
-    wireframe: true 
+    wireframe: true
 });
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
 
-
-camera.position.z = 2;
+camera.position.z = 3;
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -26,12 +23,14 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+let previousTime = performance.now();
 
-function animate() {
+function animate(currentTime) {
     requestAnimationFrame(animate);
-    sphere.rotation.y += 0.01;
-
+    const deltaTime = (currentTime - previousTime) / 1000;
+    previousTime = currentTime;
+    sphere.rotation.y += deltaTime * Math.PI * 0.1;
     renderer.render(scene, camera);
 }
 
-animate();
+animate(previousTime);
