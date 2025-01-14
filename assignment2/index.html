@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+     
+      <a-entity id="viewer-rig" position="0 1.6 2">
+        <a-camera viewer="active: true" movement-controls></a-camera>
+      </a-entity>
+
+      
+      <a-entity id="classroom-container">
+        
+        <a-entity id="room-shell" position="0 2 0">
+          <a-box scale="8 4 8" material="side: back">
+            <a-entity id="room-surfaces">
+              <a-plane class="wall" material="src: textures/wall.jpg; repeat: 2 1" position="0.49 0 0" rotation="0 -90 0"></a-plane>
+              <a-plane class="wall" material="src: textures/wall.jpg; repeat: 2 1" position="-0.49 0 0" rotation="0 90 0"></a-plane>
+              <a-plane class="ceiling" material="src: textures/ceiling.jpg; repeat: 2 2" position="0 0.49 0" rotation="90 0 0"></a-plane>
+              <a-plane class="floor" material="src: textures/floor.jpg; repeat: 2 2" position="0 -0.49 0" rotation="-90 0 0"></a-plane>
+              <a-plane class="wall" material="src: textures/wall.jpg; repeat: 2 1" position="0 0 0.49" rotation="0 180 0"></a-plane>
+              <a-plane class="wall" material="src: textures/wall.jpg; repeat: 2 1" position="0 0 -0.49"></a-plane>
+            </a-entity>
+          </a-box>
+        </a-entity>
+
+       
+        <a-entity id="window-frame" position="0 2 -3.95">
+          <a-box class="window-glass" width="2" height="1.5" depth="0.1" 
+                 material="src: textures/window.jpg; transparent: true; opacity: 0.85"></a-box>
+          <a-box class="window-trim" width="2.2" height="1.7" depth="0.15" 
+                 material="color: #000" position="0 0 -0.03"></a-box>
+        </a-entity>
+
+        <a-entity id="seating-layout">
+          <a-entity class="desk-group" position="-2 0 -1.5">
+            <a-entity class="desk" gltf-model="models/Desk.glb" scale="0.8 0.8 0.8"></a-entity>
+            <a-entity class="seat left" gltf-model="models/Chair.glb" position="-0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+            <a-entity class="seat right" gltf-model="models/Chair.glb" position="0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+          </a-entity>
+          <a-entity class="desk-group" position="2 0 -1.5">
+            <a-entity class="desk" gltf-model="models/Desk.glb" scale="0.8 0.8 0.8"></a-entity>
+            <a-entity class="seat left" gltf-model="models/Chair.glb" position="-0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+            <a-entity class="seat right" gltf-model="models/Chair.glb" position="0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+          </a-entity>
+          
+          <a-entity class="desk-group" position="-2 0 1">
+            <a-entity class="desk" gltf-model="models/Desk.glb" scale="0.8 0.8 0.8"></a-entity>
+            <a-entity class="seat left" gltf-model="models/Chair.glb" position="-0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+            <a-entity class="seat right" gltf-model="models/Chair.glb" position="0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+          </a-entity>
+          <a-entity class="desk-group" position="2 0 1">
+            <a-entity class="desk" gltf-model="models/Desk.glb" scale="0.8 0.8 0.8"></a-entity>
+            <a-entity class="seat left" gltf-model="models/Chair.glb" position="-0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+            <a-entity class="seat right" gltf-model="models/Chair.glb" position="0.4 0.27 -0.6" scale="0.25 0.25 0.25"></a-entity>
+          </a-entity>
+        </a-entity>
+
+        <a-entity id="lighting-rig">
+          <a-entity class="pendant" position="-1.5 3.5 0">
+            <a-cylinder class="fixture-body" color="#000000" height="0.3" radius="0.15"></a-cylinder>
+            <a-cylinder class="fixture-cable" color="#000000" height="0.5" radius="0.02" position="0 0.25 0"></a-cylinder>
+            <a-light class="main-beam" type="spot" color="#FFE5CC" intensity="1.7" 
+                    angle="75" penumbra="0.8" decay="2" distance="8" 
+                    position="0 -0.15 0" rotation="-90 0 0"></a-light>
+            <a-light class="ambient-glow" type="point" color="#FFE5CC" intensity="0.2" 
+                    decay="2" distance="2" position="0 -0.15 0"></a-light>
+          </a-entity>
+          
+          <a-entity class="pendant" position="1.5 3.5 0">
+            <a-cylinder class="fixture-body" color="#000000" height="0.3" radius="0.15"></a-cylinder>
+            <a-cylinder class="fixture-cable" color="#000000" height="0.5" radius="0.02" position="0 0.25 0"></a-cylinder>
+            <a-light class="main-beam" type="spot" color="#FFE5CC" intensity="1.7" 
+                    angle="75" penumbra="0.8" decay="2" distance="8" 
+                    position="0 -0.15 0" rotation="-90 0 0"></a-light>
+            <a-light class="ambient-glow" type="point" color="#FFE5CC" intensity="0.2" 
+                    decay="2" distance="2" position="0 -0.15 0"></a-light>
+          </a-entity>
+
+          <a-entity id="window-lighting">
+            <a-light class="base-ambient" type="ambient" color="#EEF5FF" intensity="0.8"></a-light>
+            
+            <a-entity class="sunbeam-array">
+              <a-light class="beam" type="spot" color="#F5FAFA" intensity="1.3" 
+                      angle="35" penumbra="0.4" decay="1.5" distance="12" 
+                      position="-0.8 2.8 -3.8" rotation="-85 0 0"></a-light>
+              <a-light class="beam" type="spot" color="#F5FAFA" intensity="1.3" 
+                      angle="35" penumbra="0.4" decay="1.5" distance="12" 
+                      position="-0.4 2.8 -3.8" rotation="-85 0 0"></a-light>
+              <a-light class="beam" type="spot" color="#F5FAFA" intensity="1.3" 
+                      angle="35" penumbra="0.4" decay="1.5" distance="12" 
+                      position="0 2.8 -3.8" rotation="-85 0 0"></a-light>
+              <a-light class="beam" type="spot" color="#F5FAFA" intensity="1.3" 
+                      angle="35" penumbra="0.4" decay="1.5" distance="12" 
+                      position="0.4 2.8 -3.8" rotation="-85 0 0"></a-light>
+              <a-light class="beam" type="spot" color="#F5FAFA" intensity="1.3" 
+                      angle="35" penumbra="0.4" decay="1.5" distance="12" 
+                      position="0.8 2.8 -3.8" rotation="-85 0 0"></a-light>
+            </a-entity>
+
+            <a-entity class="scatter-lights">
+              <a-light class="scatter" type="point" color="#F5FAFA" intensity="0.3" 
+                      decay="2" distance="4" position="-0.6 2 -3.8"></a-light>
+              <a-light class="scatter" type="point" color="#F5FAFA" intensity="0.3" 
+                      decay="2" distance="4" position="0.6 2 -3.8"></a-light>
+            </a-entity>
+            
+            <a-light class="fill" type="spot" color="#F5FAFA" intensity="0.4" 
+                    angle="120" penumbra="0.9" decay="2" distance="6" 
+                    position="0 2 -3.8" rotation="-45 0 0"></a-light>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
